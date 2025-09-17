@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
 )
 
 type NetBoxConnection struct {
@@ -19,16 +20,16 @@ func NewConnection(Url string, Token string) NetBoxConnection {
 
 func (n NetBoxConnection) GetL2VPN() {
 	url := "vpn/l2vpns/"
-	fmt.Println(string(n.Query(url, 0)))
+	fmt.Println(string(n.Query("get", url, 0)))
 
 }
-func (n NetBoxConnection) Query(endpoint string, id int) []byte {
+func (n NetBoxConnection) Query(mode string, endpoint string, id int) []byte {
 	client := &http.Client{}
 	fUrl := n.Url + "/" + endpoint
 	if id != 0 {
 		fUrl = n.Url + "/" + endpoint + "/" + strconv.Itoa(id)
 	}
-	req, err := http.NewRequest("GET", fUrl, nil)
+	req, err := http.NewRequest(strings.ToUpper(mode), fUrl, nil)
 	if err != nil {
 		log.Fatalln(err)
 	}
