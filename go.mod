@@ -1,3 +1,3 @@
-module github.com/heikkilavaste/NetboxApi
+module github.com/heikkilavaste/netboxapi
 
 go 1.24.6
