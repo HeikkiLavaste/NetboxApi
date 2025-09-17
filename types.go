@@ -34,7 +34,7 @@ type L2VPN struct {
 		Description   string        `json:"description"`
 		Comments      string        `json:"comments"`
 		Tenant        interface{}   `json:"tenant"`
-		Tags          []interface{} `json:"tags"`
+		Tags          []Tags        `json:"tags"`
 		CustomFields  struct {
 			VPRN   string `json:"VPRN"`
 			Routed bool   `json:"routed"`
@@ -43,4 +43,14 @@ type L2VPN struct {
 		Created     time.Time `json:"created"`
 		LastUpdated time.Time `json:"last_updated"`
 	} `json:"results"`
+}
+
+type Tags struct {
+	Color      string `json:"color"`
+	Display    string `json:"display"`
+	DisplayURL string `json:"display_url"`
+	Id         int    `json:"id"`
+	Name       string `json:"name"`
+	Slug       string `json:"slug"`
+	Url        string `json:"url"`
 }
