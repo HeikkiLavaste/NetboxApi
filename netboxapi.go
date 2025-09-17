@@ -10,8 +10,6 @@ import (
 	"strings"
 )
 
-var reply map[string]interface{}
-
 type NetBoxConnection struct {
 	Url   string
 	Token string
@@ -22,8 +20,9 @@ func NewConnection(Url string, Token string) NetBoxConnection {
 }
 
 func (n NetBoxConnection) GetL2VPN() {
+	var reply map[string]interface{}
 	url := "vpn/l2vpns/"
-	reply, err = json.Unmarshal(n.Query("get", url, 0, nil))
+	err := json.Unmarshal(n.Query("get", url, 0, nil), &reply)
 	if err != nil {
 		log.Println(err)
 	}
