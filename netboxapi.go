@@ -20,13 +20,13 @@ func NewConnection(Url string, Token string) NetBoxConnection {
 }
 
 func (n NetBoxConnection) GetL2VPN() {
-	var reply map[string]interface{}
+	var reply Result
 	url := "vpn/l2vpns/"
 	err := json.Unmarshal(n.Query("get", url, 0, nil), &reply)
 	if err != nil {
 		log.Println(err)
 	}
-	fmt.Println(reply["results"])
+	fmt.Println(reply.Results)
 
 }
 func (n NetBoxConnection) Query(mode string, endpoint string, id int, data []byte) []byte {
