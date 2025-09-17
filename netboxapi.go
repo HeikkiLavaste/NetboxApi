@@ -2,7 +2,6 @@ package netboxapi
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -19,15 +18,14 @@ func NewConnection(Url string, Token string) NetBoxConnection {
 	return NetBoxConnection{Url: Url, Token: Token}
 }
 
-func (n NetBoxConnection) GetL2VPN() {
-	var reply Result
+func (n NetBoxConnection) GetL2VPN() L2VPN {
+	var L2VPN L2VPN
 	url := "vpn/l2vpns/"
-	err := json.Unmarshal(n.Query("get", url, 0, nil), &reply)
+	err := json.Unmarshal(n.Query("get", url, 0, nil), &L2VPN)
 	if err != nil {
 		log.Println(err)
 	}
-	fmt.Println(reply.Results)
-
+	return L2VPN
 }
 func (n NetBoxConnection) Query(mode string, endpoint string, id int, data []byte) []byte {
 	client := &http.Client{}
