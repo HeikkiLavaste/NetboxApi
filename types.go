@@ -39,6 +39,7 @@ type L2VPN struct {
 			VPRN   string `json:"VPRN"`
 			Routed bool   `json:"routed"`
 			Subnet string `json:"subnet"`
+			Vlan   int    `json:"Vlan"`
 		} `json:"custom_fields"`
 		Created     time.Time `json:"created"`
 		LastUpdated time.Time `json:"last_updated"`
